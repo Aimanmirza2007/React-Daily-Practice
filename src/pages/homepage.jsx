@@ -27,6 +27,16 @@ function Homepage() {
   //   console.log("submitted");
   // };
   // FORM HANDLING
+
+  // TWO WAY BINDING
+  const [fullname, setfull] = useState("");
+  const submitform = (event) => {
+    event.preventDefault();
+    console.log(fullname);
+    setfull("");
+  };
+  // TWO WAY BINDING
+
   return (
     <>
       {/* // WITHOUT HOOKS */}
@@ -43,7 +53,7 @@ function Homepage() {
       {/* // WITHOUT HOOKS */}
 
       {/* // WITH HOOKS */}
-      <div>
+      {/* <div>
         <h1>User name is {username}</h1>
         <button
           className="p-5 cursor-pointer bg-amber-300"
@@ -51,11 +61,11 @@ function Homepage() {
         >
           change user
         </button>
-      </div>
+      </div> */}
       {/* // WITH HOOKS */}
 
       {/* FORM HANDLING */}
-      <form
+      {/* <form
       // onSubmit={(e) => {
       //   submitHandler(e);
       // }}
@@ -68,9 +78,29 @@ function Homepage() {
         <button className="p-4 bg-teal-500 cursor-pointer block mt-5">
           Submit
         </button>
-      </form>
+      </form> */}
       {/* FORM HANDLING */}
 
+      {/* TWO WAY BINDING */}
+      <form
+        onSubmit={(event) => {
+          submitform(event);
+        }}
+      >
+        <input
+          type="text"
+          value={fullname}
+          className="border-2 p-3 block m-5"
+          placeholder="Name"
+          onChange={(e) => {
+            setfull(e.target.value);
+            // console.log(e.target.value);
+          }}
+        />
+        <button className="p-4 bg-green-500 cursor-pointer block mt-5">
+          Submit
+        </button>
+      </form>
       {/* TWO WAY BINDING */}
     </>
   );
