@@ -1,9 +1,13 @@
 import React from "react";
 
-function Button({name,color}) {
+function Button(props) {
+  console.log(props);
+  
   return (
     <>
-      <button className={`text-white ${color} p-4 cursor-pointer`}>{name}</button>
+      <button className={`text-white ${props.color}  p-4 cursor-pointer  block mb-4 `}>
+        {props.user}
+      </button>
     </>
   );
 }
