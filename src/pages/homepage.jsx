@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/button";
+import axios from "axios";
+import Card from "../components/Card";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   // WITHOUT HOOKS
@@ -37,10 +40,23 @@ function Homepage() {
   };
   // TWO WAY BINDING
 
+  // AXIOS PRACRICE
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const response = await axios.get(
+      "https://picsum.photos/v2/list?page=2&limit=30"
+    );
+    // console.log(response.data);
+    setData(response.data);
+    // console.log(data);
+  };
+  // AXIOS PRACRICE
+
   return (
     <>
       {/* // WITHOUT HOOKS */}
-      {/* <Button name="hello world" color="bg-teal-700"/> */}
+      {/* <Button user="About" name="hello world" color="bg-teal-700"/>/ */}
       {/* <div>
         <h1>The value of a is {a}</h1>
         <button
@@ -102,6 +118,29 @@ function Homepage() {
         </button>
       </form>
       {/* TWO WAY BINDING */}
+
+      {/* AXIOS PRACTICE */}
+      <div className="p-10">
+        <button
+          onClick={getData}
+          className="bg-pink-700 text-white rounded  px-5 py-4 font-bold text-2xl cursor-pointer"
+        >
+          Get Data
+        </button>
+        <div className="mt-5 bg-teal-600 p-6 text-white text-2xl">
+          {data.map((element, idx) => {
+            return (
+              <Card
+                key={idx}
+                username={element.author}
+                photo={element.download_url}
+              />
+            );
+          })}
+         
+        </div>
+      </div>
+       {/* <Link to={"/about"}>About</Link> */}
     </>
   );
 }
